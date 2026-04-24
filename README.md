@@ -13,9 +13,7 @@ dotnet add package Polareum.Waas.Sdk
 ```csharp
 using Polareum.Waas.Sdk;
 
-var client = new WaasClient(
-	url: "https://waas.example.com",
-	apiKey: "your-api-key");
+var client = new WaasClient(new WaasClientOptions("https://waas.polareum.com", "your-api-key"));
 
 var cancellationToken = CancellationToken.None;
 
