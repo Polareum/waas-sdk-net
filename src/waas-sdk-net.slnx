@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="IncrementVersion.ps1" />
+    <File Path="pack-and-push.ps1" />
+    <File Path="props.xml" />
+  </Folder>
+  <Project Path="Polareum.Waas.Sdk/Polareum.Waas.Sdk.csproj" />
+</Solution>

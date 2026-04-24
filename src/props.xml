@@ -1,0 +1,10 @@
+<Project>
+	<PropertyGroup>
+		<RootNamespace>$(MSBuildProjectName.Replace(".Abstractions", "").Replace(".Services", "").Replace(".Tests", "").Replace(".Http", "").Replace(".Core", ""))</RootNamespace>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWarn>1701;1702;CA1862;CA1859;CA1822;CA1873;CA1862;NETSDK1057;IDE0130</NoWarn>
+		<Version>3.0.0-beta</Version>
+	</PropertyGroup>
+</Project>
