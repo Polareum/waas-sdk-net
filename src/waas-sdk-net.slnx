@@ -4,5 +4,6 @@
     <File Path="pack-and-push.ps1" />
     <File Path="props.xml" />
   </Folder>
+  <Project Path="Polareum.Waas.Sdk.Abstractions/Polareum.Waas.Sdk.Abstractions.csproj" Id="9e969a34-65ff-4a29-a6bc-dffd325d0e21" />
   <Project Path="Polareum.Waas.Sdk/Polareum.Waas.Sdk.csproj" />
 </Solution>
