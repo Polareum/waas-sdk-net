@@ -15,5 +15,5 @@ public class WaasClientOptions
 	/// api key to be used, if null, no api-key will be used
 	/// </summary>
 	[ConfigurationKeyName("api-key")]
-	public required string? ApiKey { get; set; } = "";
+	public required string? ApiKey { get; set; } = null;
 }

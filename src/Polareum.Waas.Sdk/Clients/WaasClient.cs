@@ -1,3 +1,4 @@
+using KamiSama.Extensions.DependencyInjection;
 using Polareum.Waas.Sdk.Clients;
 using Polareum.Waas.Sdk.Internals;
 
@@ -11,6 +12,7 @@ namespace Polareum.Waas.Sdk;
 /// <summary>
 /// Concrete WAAS client that authenticates requests with an API key.
 /// </summary>
+[AutoInjectScoped<IWaasClient>]
 public sealed class WaasClient : IWaasClient
 {
 	private readonly WaasRequestExecutor executor;
@@ -95,8 +97,6 @@ internal sealed class AdminWalletsClient(WaasRequestExecutor executor) : IAdminW
 /// <summary>
 /// Provides administrative blockchain network APIs.
 /// </summary>
-
-
 internal sealed class AdminNetworksClient(WaasRequestExecutor executor) : IAdminNetworksClient
 {
 	public Task<PagedResult<BlockchainNetworkListItemForAdminDto>> ListAsync(BlockchainNetworkSearchModel searchModel, CancellationToken cancellationToken = default)
@@ -114,8 +114,6 @@ internal sealed class AdminNetworksClient(WaasRequestExecutor executor) : IAdmin
 /// <summary>
 /// Provides wallet APIs for the current API key owner.
 /// </summary>
-
-
 internal sealed class WaasWalletsClient(WaasRequestExecutor executor) : IWaasWalletsClient
 {
 	public IWalletGenerateClient Generate { get; } = new WalletGenerateClient(executor);
@@ -135,8 +133,6 @@ internal sealed class WaasWalletsClient(WaasRequestExecutor executor) : IWaasWal
 /// <summary>
 /// Provides wallet generation APIs.
 /// </summary>
-
-
 internal sealed class WalletGenerateClient(WaasRequestExecutor executor) : IWalletGenerateClient
 {
 	public Task<WalletDto> RandomKeyWalletAsync(GenerateRandomKeyWalletRequest request, CancellationToken cancellationToken = default)
@@ -146,8 +142,6 @@ internal sealed class WalletGenerateClient(WaasRequestExecutor executor) : IWall
 /// <summary>
 /// Provides wallet import APIs.
 /// </summary>
-
-
 internal sealed class WalletImportClient(WaasRequestExecutor executor) : IWalletImportClient
 {
 	public Task<WalletDto> MnemonicsAsync(ImportWalletByMnemonicsRequest request, CancellationToken cancellationToken = default)
@@ -155,12 +149,9 @@ internal sealed class WalletImportClient(WaasRequestExecutor executor) : IWallet
 	public Task<WalletDto> PrivateKeyAsync(ImportWalletByPrivateKeyRequest request, CancellationToken cancellationToken = default)
 		=> executor.PutAsync<WalletDto>("api/wallets/import/private-key", request, cancellationToken);
 }
-
 /// <summary>
 /// Provides blockchain network APIs for the current API key owner.
 /// </summary>
-
-
 internal sealed class WaasNetworksClient(WaasRequestExecutor executor) : IWaasNetworksClient
 {
 	public Task<PagedResult<BlockchainNetworkListItemForUsersDto>> ListAsync(BlockchainNetworkSearchModel searchModel, CancellationToken cancellationToken = default)

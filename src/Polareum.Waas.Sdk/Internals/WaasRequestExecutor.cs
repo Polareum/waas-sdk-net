@@ -29,7 +29,7 @@ internal sealed class WaasRequestExecutor(IRestBuilder restBuilder, WaasClientOp
 		var request = restBuilder
 			.ForServiceUrl(options.BaseUrl, path);
 
-		if (options.ApiKey is not null)
+		if (!string.IsNullOrWhiteSpace(options.ApiKey))
 			request = request.AddHeader("X-API-Key", options.ApiKey);
 
 		if (query is not null)
@@ -50,7 +50,7 @@ internal sealed class WaasRequestExecutor(IRestBuilder restBuilder, WaasClientOp
 		var request = restBuilder
 			.ForServiceUrl(options.BaseUrl, path);
 
-		if (options.ApiKey is not null)
+		if (!string.IsNullOrWhiteSpace(options.ApiKey))
 			request = request.AddHeader("X-API-Key", options.ApiKey);
 
 		if (query is not null)
@@ -66,7 +66,7 @@ internal sealed class WaasRequestExecutor(IRestBuilder restBuilder, WaasClientOp
 	{
 		var request = new RestRequest(options.BaseUrl.TrimEnd('/') + "/" + path.TrimStart('/'), Method.Patch);
 
-		if (options.ApiKey is not null)
+		if (!string.IsNullOrWhiteSpace(options.ApiKey))
 			request = request.AddHeader("X-API-Key", options.ApiKey);
 
 		if (query is not null)
