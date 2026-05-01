@@ -1,4 +1,5 @@
 using KamiSama.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Polareum.Waas.Sdk.Clients;
 using Polareum.Waas.Sdk.Internals;
 
@@ -20,9 +21,9 @@ public sealed class WaasClient : IWaasClient
 	/// <summary>
 	/// Creates a WAAS client for the given server URL and API key.
 	/// </summary>
-	public WaasClient(IRestBuilder restBuilder, WaasClientOptions options)
+	public WaasClient(IRestBuilder restBuilder, IOptions<WaasClientOptions> options)
 	{
-		executor = new WaasRequestExecutor(restBuilder, options);
+		executor = new WaasRequestExecutor(restBuilder, options.Value);
 		Admin = new WaasAdminClient(executor);
 		Wallets = new WaasWalletsClient(executor);
 		Networks = new WaasNetworksClient(executor);
